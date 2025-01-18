@@ -1,0 +1,32 @@
+{
+  "name": "namaste",
+  "version": "1.0.0",
+  "description": "This is the namaste react",
+  "scripts": {
+    "test": "jest",
+    "start": "npx parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JaveedYara72/NamasteReact.git"
+  },
+  "keywords": [
+    "javeed",
+    "react"
+  ],
+  "author": "Javeed Yara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JaveedYara72/NamasteReact/issues"
+  },
+  "homepage": "https://github.com/JaveedYara72/NamasteReact#readme",
+  "devDependencies": {
+    "parcel": "^2.13.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
