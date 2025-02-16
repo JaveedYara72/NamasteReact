@@ -1,7 +1,9 @@
-export default Header = () => {
+import { logoURL } from "../../src/utils/constants";
+
+const Header = () => {
   return (
     <div className="header">
-      <img src="https://png.pngtree.com/png-vector/20220527/ourmid/pngtree-restaurant-logo-png-image_4743589.png"></img>
+      <img src={logoURL}></img>
       <div className="nav-items">
         <ul>
           <li>Home</li>
@@ -13,3 +15,5 @@ export default Header = () => {
     </div>
   );
 };
+
+export default Header;

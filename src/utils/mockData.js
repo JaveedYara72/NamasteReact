@@ -1195,3 +1195,5 @@ export const swiggyData = {
   deviceId: "88dbc547-9512-3935-836d-32a22997240e",
   csrfToken: null,
 };
+
+export default swiggyData;
