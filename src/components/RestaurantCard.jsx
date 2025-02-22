@@ -3,7 +3,7 @@ import { swiggyURL } from "../utils/constants";
 const RestaurantCard = (props) => {
   const { resData } = props;
 
-  const { cloudinaryImageId, name, costForTwo, areaName } = resData?.info;
+  const { cloudinaryImageId, name, costForTwo, areaName } = resData.info;
 
   return (
     <div className="restaurantcard">

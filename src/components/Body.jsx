@@ -1,3 +1,5 @@
+const cors = require("cors");
+
 // Component import
 import RestaurantCard from "./RestaurantCard";
 
@@ -10,9 +12,28 @@ let restaurantCounter = 0;
 
 const Body = () => {
   // Writing useState hook
-  const [listOfRestaurants, setListOfRestaurants] = useState(
-    swiggyData?.data?.cards
-  );
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [originalRestaurants, setOriginalRestaurants] = useState([]);
+
+  // writing useEffect hook, we use this, for any information to be loaded after the page is loaded.
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // writing a fetch call to swiggy's public api
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.97530&lng=77.59100&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
+    const json = await data.json();
+
+    setListOfRestaurants(
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setOriginalRestaurants(
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+  };
 
   return (
     <div className="body">
@@ -20,9 +41,8 @@ const Body = () => {
         <button
           className="filter-btn"
           onClick={() => {
-            console.log(listOfRestaurants);
             const filteredList = listOfRestaurants.filter(
-              (restaurant) => restaurant.card.card.info.avgRating < 4.0
+              (restaurant) => restaurant?.info?.avgRating > 4.0
             );
             setListOfRestaurants(filteredList);
           }}
@@ -32,7 +52,7 @@ const Body = () => {
         <button
           className="reset-btn"
           onClick={() => {
-            setListOfRestaurants(swiggyData?.data?.cards);
+            setListOfRestaurants(originalRestaurants);
           }}
         >
           Reset Restaurants
@@ -40,12 +60,9 @@ const Body = () => {
       </div>
       <div className="restaurant-container">
         {listOfRestaurants.map((restaurant) => {
-          restaurantCounter++;
+          restaurantCounter = 0;
           return (
-            <RestaurantCard
-              key={restaurantCounter}
-              resData={restaurant?.card?.card}
-            />
+            <RestaurantCard key={restaurantCounter++} resData={restaurant} />
           );
         })}
       </div>
