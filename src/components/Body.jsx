@@ -29,6 +29,14 @@ const Body = () => {
         >
           Filter Restaurants
         </button>
+        <button
+          className="reset-btn"
+          onClick={() => {
+            setListOfRestaurants(swiggyData?.data?.cards);
+          }}
+        >
+          Reset Restaurants
+        </button>
       </div>
       <div className="restaurant-container">
         {listOfRestaurants.map((restaurant) => {
